@@ -1,0 +1,140 @@
+.homepage-box {
+	height: 270px;
+}
+
+<!--
+add news css of haijun -> .ExaminationBox {
+	width: 100%;
+	font-family: Microsoft YaHei;
+	font-size: 12px;
+}
+
+.DigitOutBox,.DigitLine,.DigitButton {
+	float: left;
+	height: 100px;
+}
+
+.DigitOutBox,.DigitInBox {
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.DigitOutBox {
+	width: 100px;
+	height: 90px;
+	/* background: #d7d7d7;
+	-moz-box-shadow: 1px 1px 1px #999 inset;
+	-webkit-box-shadow: 1px 1px 1px #999 inset;
+	box-shadow: 1px 1px 1px #999 inset; */
+}
+
+.DigitInBox {
+	width: 86%;
+	height: 87%;
+	margin: -8% auto;
+	line-height: 180px;
+	font: 52px/2 Arial, Helvetica, sans-serif;
+	color: #8ecb66;/* 53c79f 9DDF70*/
+	text-align: center;
+	/* background-image: -moz-linear-gradient(top, #6fe182, #028432);
+	Firefox
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6fe182),
+		color-stop(1, #028432)); Saf4+, Chrome
+	background-image: linear-gradient(#6fe182, #028432 60%, #028432);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6fe182',
+		endColorstr='#028432', GradientType='0'); IE
+	border-top: solid 1px #fff;
+	border-left: solid 1px #fff;
+	border-bottom: solid 1px #64635e;
+	filter: Dropshadow(offx = 1, offy = 0, color = #fff)
+		Dropshadow(offx = 0, offy = 1, color = #ff0000)
+		Dropshadow(offx = 0, offy = -1, color = #290000)
+		Dropshadow(offx = -1, offy = 0, color = #290000);
+	text-shadow: -1px 0 #ffffff, 0 1px black, 1px 0 black, 0 -1px #fff; */
+}
+
+.DigitLine {
+	width: 5px;
+	background: #d7d7d7;
+	margin-left: 7px;
+	-moz-box-shadow: 1px 1px 1px #999 inset;
+	-webkit-box-shadow: 1px 1px 1px #999 inset;
+	box-shadow: 1px 1px 1px #999 inset;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.DigitButton {
+	margin-left: 7px;
+}
+
+.DigitButton .DigitHeight {
+	padding-top: 50%;
+}
+
+.DigitButton .btn {
+	width: 90px;
+	margin-top: -40px;
+	margin-left: 15px;
+}
+
+.clear {
+	clear: both
+}
+
+.ExaminationBox h2 {
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+	margin: 10px auto;
+}
+
+.ExaminationBox h3 {
+	font-size: 13px;
+	color: #666;
+	margin: 0px auto 15px auto;
+	text-align: center;
+}
+
+.StatisticsBox {
+	border: #e8e8e8 solid 1px;
+	background: #f9f9f9;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.StatisticsBox dl {
+	margin: 0px;
+}
+
+.StatisticsBox dl dd {
+	padding: 5px 0px;
+	color: #777;
+}
+.warnFont{
+color: #FF6633;
+font-weight: bold;
+font-size: 16px;
+}
+.warning1{
+	background-image: -moz-linear-gradient(top, #FF6633, #FF0033);
+	/* Firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF6633),
+		color-stop(1, #FF0033)); /* Saf4+, Chrome */
+	background-image: linear-gradient(#FF6633, #FF0033 60%, #FF0033);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF6633',
+		endColorstr='#FF0033', GradientType='0'); /* IE*/
+}
+.warning2{
+	background-image: -moz-linear-gradient(top, #CCCCCC, #FFFFFF);
+	/* Firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #CCCCCC),
+		color-stop(1, #FFFFFF)); /* Saf4+, Chrome */
+	background-image: linear-gradient(#CCCCCC, #FFFFFF 60%, #FFFFFF);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCCCCC',
+		endColorstr='#FFFFFF', GradientType='0'); /* IE*/
+}

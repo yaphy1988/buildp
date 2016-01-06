@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        ===
+        This comment should NOT be removed.
+
+        Charisma v2.0.0
+
+        Copyright 2012-2014 Eric
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        http://usman.it
+        http://twitter.com/halalit_usman
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>Free HTML5 Bootstrap Admin Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="云监控">
+    <meta name="author" content="Eric">
+
+    <!-- The styles -->
+    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+
+    <link href="css/charisma-app.css" rel="stylesheet">
+    <link href='bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+    <link href='bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='css/jquery.noty.css' rel='stylesheet'>
+    <link href='css/noty_theme_default.css' rel='stylesheet'>
+    <link href='css/elfinder.min.css' rel='stylesheet'>
+    <link href='css/elfinder.theme.css' rel='stylesheet'>
+    <link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='css/uploadify.css' rel='stylesheet'>
+    <link href='css/animate.min.css' rel='stylesheet'>
+		<style>
+	.homepage-box{height:330px;}
+<!-- add news css of haijun ->
+	.ExaminationBox{ width:100%; font-family:Microsoft YaHei; font-size:12px;}
+	.DigitOutBox,.DigitLine,.DigitButton{float:left; height:100px;}
+		.DigitOutBox,.DigitInBox{
+			-moz-border-radius: 15px;
+			-webkit-border-radius: 15px;
+			border-radius:15px;
+		}
+		.DigitOutBox{ width:100px;height:100px; background:#d7d7d7;
+		-moz-box-shadow:1px 1px 1px #999 inset;              
+		-webkit-box-shadow:1px 1px 1px #999 inset;           
+		box-shadow:1px 1px 1px #999 inset;
+		}
+		.DigitInBox{ width:86%; height:87%; margin:5% auto; line-height:180px; font:40px/2 Arial, Helvetica, sans-serif; color:#fff; text-align:center;
+		background-image: -moz-linear-gradient(top, #6fe182, #028432); /* Firefox */
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6fe182), color-stop(1, #028432)); /* Saf4+, Chrome */
+		background-image: linear-gradient(#6fe182, #028432 60%, #028432);
+
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6fe182', endColorstr='#028432', GradientType='0'); /* IE*/
+		border-top:solid 1px #fff; border-left:solid 1px #fff; border-bottom:solid 1px #64635e;
+		
+		
+		filter: Dropshadow(offx=1,offy=0,color=#fff) Dropshadow(offx=0,offy=1,color=#ff0000) Dropshadow(offx=0,offy=-1,color=#290000) Dropshadow(offx=-1,offy=0,color=#290000);
+		text-shadow: -1px 0 #ffffff, 0 1px black, 1px 0 black, 0 -1px #fff;
+		}
+	.DigitLine{ width:5px; background:#d7d7d7; margin-left:15px;
+		-moz-box-shadow:1px 1px 1px #999 inset;              
+		-webkit-box-shadow:1px 1px 1px #999 inset;           
+		box-shadow:1px 1px 1px #999 inset;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius:5px;
+	}
+	
+	.DigitButton{ margin-left:15px;}
+		.DigitButton .DigitHeight{ padding-top:50%;}
+		.DigitButton .btn{ width:90px; margin-top:-19px;}
+	.clear{ clear:both}
+	.ExaminationBox h2{ font-size:16px; font-weight:bold; color:#000; margin:10px auto;}
+	.ExaminationBox h3{ font-size:13px; color:#666; margin:20px auto 15px auto;}
+	.StatisticsBox{ border:#efd78d solid 1px; background:#fffdd7; padding:10px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius:5px;
+	}
+	.StatisticsBox dl{ margin:0px;}
+		.StatisticsBox dl dd{ padding:5px 0px; color:#333;}
+</style>
+    <!-- jQuery -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+</head>
+
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+
+        <div class="navbar-inner">
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
+                <span>云监控</span></a>
+
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> admin</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </div>
+            <!-- user dropdown ends -->
+
+           
+
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+                <li><a href="#"><i class="glyphicon glyphicon-globe"></i> Visit Site</a></li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-star"></i> Dropdown <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <form class="navbar-search pull-left">
+                        <input placeholder="Search" class="search-query form-control col-md-10" name="query"
+                               type="text">
+                    </form>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- topbar ends -->
+<div class="ch-container">
+    <div class="row">
+        
+        <!-- left menu starts -->
+        <div class="col-sm-2 col-lg-2">
+            <div class="sidebar-nav">
+                <div class="nav-canvas">
+                    <div class="nav-sm nav nav-stacked">
+
+                    </div>
+                    <ul class="nav nav-pills nav-stacked main-menu" style="line-height: 4.428571;">
+                        <li class="nav-header">云监控</li>
+                        <li><a class="ajax-link" href="index.html"><i class="glyphicon glyphicon-home"></i><span> 集群概览</span></a>
+                        </li>
+                        
+                        <li><a class="ajax-link" href="hosts.html">
+                        	<i class="glyphicon glyphicon-align-justify"></i>
+                        	<span> 主机列表</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="service.html">
+                        	<i class="glyphicon glyphicon-align-justify"></i>
+                        	<span> 服务列表</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="problem.html">
+                        	<i class="glyphicon glyphicon-align-justify"></i>
+                        	<span> 问题故障</span></a>
+                        </li>                                                     
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+        <!-- left menu ends -->
+
+        <noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                    enabled to use this site.</p>
+            </div>
+        </noscript>
+
+        <div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+            
+
+<div class="row">
+
+    <div class="box col-md-12">
+        <div class="box-inner">
+            
+            <div class="box-content">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active"><a href="#info">总体报告</a></li>
+                    <li><a href="#custom">详细信息</a></li>  
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane active" id="info">
+                        <div class="row">
+	                        	<div class="box col-md-6">
+										        	<div class="box-inner">
+										            <div class="box-content">
+										                <div class="row" style="height:200px;font-family:"Microsoft Yahei";">
+								                        <div class="col-md-6" style="text-align:right;"><h5>服务器名称:</h5></div>
+								                        <div class="col-md-6"><h5>gxuweg3web01</h5></div>
+								                        <div class="col-md-6" style="text-align:right;"><h5>IP地址:</h5></div>
+								                        <div class="col-md-6"><h5>132.37.5.1</h5></div>
+								                        <div class="col-md-6" style="text-align:right;"><h5>操作系统:</h5></div>
+								                        <div class="col-md-6"><h5>linux</h5></div>
+								                        <div class="col-md-6" style="text-align:right;"><h5>当前状态:</h5></div>
+								                        <div class="col-md-6"><h5>启动</h5></div>
+								                        <div class="col-md-6" style="text-align:right;"><h5>健康级别:</h5></div>
+								                        <div class="col-md-6"><h5>优秀</h5></div>
+								                    </div>
+										            </div>
+										        	</div>
+										    		</div>
+										    		<div class="box col-md-6">
+										        	<div class="box-inner">
+										            <div class="box-content">
+										                <div class="row" style="height:200px;font-family:"Microsoft Yahei";">
+								                        <div class="col-md-6" style="">
+								                        		<canvas id="cvs5" style="margin-left:10px" width="200" height="200">[No canvas support]</canvas>	
+								                        </div>
+								                        <div class="col-md-6">
+								                        		<h3 style="margin-left:26%;margin-top:17%;">健康指数</h3>
+																		        <div class="DigitOutBox"  style="margin-left:26%">
+																		            <div class="DigitInBox">90</div>
+																		        </div>
+								                        </div>
+								                       
+								                    </div>
+										            </div>
+										        	</div>
+										    		</div>
+                    		</div>
+                    		<div class="row">
+	                        	<div class="box col-md-3">
+										        	<div class="box-inner">
+										            <div class="box-content">
+										                <div id="" style="height:200px">
+										                	<canvas id="cvs1" style="margin-left:10px" width="200" height="200">[No canvas support]</canvas>	
+										                </div>
+										                <p style="text-align:center">CPU使用率</p>
+										            </div>
+										        	</div>
+										    		</div>
+										    		<div class="box col-md-3">
+										        	<div class="box-inner">
+										            <div class="box-content">
+										                <div id="" style="height:200px">
+										                	<canvas id="cvs2" style="margin-left:10px" width="200" height="200">[No canvas support]</canvas>	
+										                </div>
+										                <p style="text-align:center">内存使用率</p>
+										            </div>
+										        	</div>
+										    		</div>
+										    		<div class="box col-md-3">
+										        	<div class="box-inner">
+										            <div class="box-content">
+										                <div id="" style="height:200px">
+										                	<canvas id="cvs3" style="margin-left:10px" width="200" height="200">[No canvas support]</canvas>	
+										                </div>
+										                <p style="text-align:center">用户登录数</p>
+										            </div>
+										        	</div>
+										    		</div>
+										    		<div class="box col-md-3">
+										        	<div class="box-inner">
+										            <div class="box-content">
+										                <div id="" style="height:200px">
+										                	<canvas id="cvs4" style="margin-left:10px" width="200" height="200">[No canvas support]</canvas>	
+										                </div>
+										                <p style="text-align:center">总进程数</p>
+										            </div>
+										        	</div>
+										    		</div>
+                    		</div>
+                    </div>
+                    <div class="tab-pane" id="custom">
+                        <div class="row">
+                        		<div class="box col-md-12">
+												        <div class="box-inner">
+												            <div class="box-header well">
+												                <h2><i class="glyphicon glyphicon-list-alt"></i> CUP使用率</h2>
+												
+												                <div class="box-icon">
+												                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+												                            class="glyphicon glyphicon-cog"></i></a>
+												                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+												                            class="glyphicon glyphicon-chevron-up"></i></a>
+												                    <a href="#" class="btn btn-close btn-round btn-default"><i
+												                            class="glyphicon glyphicon-remove"></i></a>
+												                </div>
+												            </div>
+												            <div class="box-content">
+												                <div id="sincos" class="center" style="height:300px;width:100%;"></div>
+												                <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span
+												                        id="clickdata"></span></p>
+												            </div>
+												        </div>
+												    </div>
+                        	
+											  		<div class="box col-md-12">
+												        <div class="box-inner">
+												            <div class="box-header well">
+												                <h2><i class="glyphicon glyphicon-list-alt"></i> 登录用户数</h2>
+												
+												                <div class="box-icon">
+												                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+												                            class="glyphicon glyphicon-cog"></i></a>
+												                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+												                            class="glyphicon glyphicon-chevron-up"></i></a>
+												                    <a href="#" class="btn btn-close btn-round btn-default"><i
+												                            class="glyphicon glyphicon-remove"></i></a>
+												                </div>
+												            </div>
+												            <div class="box-content">
+												                <div id="stackchart" class="center" style="height:300px;width:100%;"></div>
+												
+												                <p class="stackControls center">
+												                    <input class="btn btn-default" type="button" value="With stacking">
+												                    <input class="btn btn-default" type="button" value="Without stacking">
+												                </p>
+												
+												                <p class="graphControls center">
+												                    <input class="btn btn-primary" type="button" value="Bars">
+												                    <input class="btn btn-primary" type="button" value="Lines">
+												                    <input class="btn btn-primary" type="button" value="Lines with steps">
+												                </p>
+												            </div>
+												        </div>
+												    </div>  
+											
+											    
+											
+											    
+												</div><!--/row-->
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!--/row-->
+
+
+
+<!-- chart libraries start -->
+<script src="bower_components/flot/excanvas.min.js"></script>
+<script src="bower_components/flot/jquery.flot.js"></script>
+<script src="bower_components/flot/jquery.flot.pie.js"></script>
+<script src="bower_components/flot/jquery.flot.stack.js"></script>
+<script src="bower_components/flot/jquery.flot.resize.js"></script>
+<!-- chart libraries end -->
+<script src="js/init-chart.js"></script>
+
+    <!-- content ends -->
+    </div><!--/#content.col-md-0-->
+</div><!--/fluid-row-->
+
+    
+    <hr>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>Settings</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Here settings can be configured...</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="row">
+        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="http://usman.it" target="_blank">Muhammad
+                Usman</a> 2012 - 2014</p>
+
+        <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+                href="http://usman.it/free-responsive-admin-template">云监控</a></p>
+    </footer>
+
+</div><!--/.fluid-container-->
+
+<!-- external javascript -->
+
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- library for cookie management -->
+<script src="js/jquery.cookie.js"></script>
+<!-- calender plugin -->
+<script src='bower_components/moment/min/moment.min.js'></script>
+<script src='bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+<!-- data table plugin -->
+<script src='js/jquery.dataTables.min.js'></script>
+
+<!-- select or dropdown enhancer -->
+<script src="bower_components/chosen/chosen.jquery.min.js"></script>
+<!-- plugin for gallery image view -->
+<script src="bower_components/colorbox/jquery.colorbox-min.js"></script>
+<!-- notification plugin -->
+<script src="js/jquery.noty.js"></script>
+<!-- library for making tables responsive -->
+<script src="bower_components/responsive-tables/responsive-tables.js"></script>
+<!-- tour plugin -->
+<script src="bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+<!-- star rating plugin -->
+<script src="js/jquery.raty.min.js"></script>
+<!-- for iOS style toggle switch -->
+<script src="js/jquery.iphone.toggle.js"></script>
+<!-- autogrowing textarea plugin -->
+<script src="js/jquery.autogrow-textarea.js"></script>
+<!-- multiple file upload plugin -->
+<script src="js/jquery.uploadify-3.1.min.js"></script>
+<!-- history.js for cross-browser state change on ajax -->
+<script src="js/jquery.history.js"></script>
+<!-- application script for Charisma demo -->
+<script src="js/charisma.js"></script>
+<script src="js/gauge/RGraph.common.core.js" ></script>
+<script src="js/gauge/RGraph.common.effects.js" ></script>
+<script src="js/gauge/RGraph.common.dynamic.js" ></script>
+<script src="js/gauge/RGraph.gauge.js" ></script>
+<script src="js/gauge/excanvas.js"></script>
+<script>
+    window.onload = function () {			
+        var gauge1 = new RGraph.Gauge('cvs1', 0, 100, 84);
+        gauge1.Set('chart.scale.decimals', 0);
+        gauge1.Set('chart.tickmarks.small', 50);
+        gauge1.Set('chart.tickmarks.big',5);
+        gauge1.Set('chart.title.top.size', 24);
+        gauge1.Set('chart.title.bottom.color', '#aaa');
+        gauge1.Draw();            
+				function Updategauge () {
+					gauge1.value=RGraph.random(60,95);
+					RGraph.Effects.Gauge.Grow(gauge1);
+					setTimeout(Updategauge, 2000);
+				}
+				Updategauge(); 
+				
+				var gauge2 = new RGraph.Gauge('cvs2', 0, 100, 84);
+        gauge2.Set('chart.scale.decimals', 0);
+        gauge2.Set('chart.tickmarks.small', 50);
+        gauge2.Set('chart.tickmarks.big',5);
+        gauge2.Set('chart.title.top.size', 24);
+        gauge2.Set('chart.title.bottom.color', '#aaa');
+        gauge2.Draw();            
+				function Updategauge2 () {
+					gauge2.value=RGraph.random(60,95);
+					RGraph.Effects.Gauge.Grow(gauge2);
+					setTimeout(Updategauge2, 2000);
+				}
+				Updategauge2(); 
+				
+				
+				var gauge3 = new RGraph.Gauge('cvs3', 0, 100, 84);
+        gauge3.Set('chart.scale.decimals', 0);
+        gauge3.Set('chart.tickmarks.small', 50);
+        gauge3.Set('chart.tickmarks.big',5);
+        gauge3.Set('chart.title.top.size', 24);
+        gauge3.Set('chart.title.bottom.color', '#aaa');
+        gauge3.Draw();            
+				function Updategauge3 () {
+					gauge3.value=RGraph.random(60,95);
+					RGraph.Effects.Gauge.Grow(gauge3);
+					setTimeout(Updategauge3, 2000);
+				}
+				Updategauge3(); 
+				
+				
+				
+				var gauge4 = new RGraph.Gauge('cvs4', 0, 100, 84);
+        gauge4.Set('chart.scale.decimals', 0);
+        gauge4.Set('chart.tickmarks.small', 50);
+        gauge4.Set('chart.tickmarks.big',5);
+        gauge4.Set('chart.title.top.size', 24);
+        gauge4.Set('chart.title.bottom.color', '#aaa');
+        gauge4.Draw();            
+				function Updategauge4 () {
+					gauge4.value=RGraph.random(60,95);
+					RGraph.Effects.Gauge.Grow(gauge4);
+					setTimeout(Updategauge4, 2000);
+				}
+				Updategauge4(); 
+				
+				var gauge5 = new RGraph.Gauge('cvs5', 0, 100, 84);
+        gauge5.Set('chart.scale.decimals', 0);
+        gauge5.Set('chart.tickmarks.small', 50);
+        gauge5.Set('chart.tickmarks.big',5);
+        gauge5.Set('chart.title.top.size', 24);
+        gauge5.Set('chart.title.bottom.color', '#aaa');
+        gauge5.Draw();            
+				function Updategauge5 () {
+					gauge5.value=RGraph.random(60,95);
+					RGraph.Effects.Gauge.Grow(gauge5);
+					setTimeout(Updategauge5, 2000);
+				}
+				Updategauge5(); 	
+    }
+</script>
+
+</body>
+</html>

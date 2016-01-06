@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.buildp.dao.mapper.TSupplierInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.buildp.dao.model.TSupplierInfo" >
+    <id column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+    <result column="business_permit" property="businessPermit" jdbcType="VARCHAR" />
+    <result column="business_introduce" property="businessIntroduce" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_staff" property="createStaff" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_staff" property="updateStaff" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    supplier_id, supplier_name, region_code, business_permit, business_introduce, status, 
+    create_time, create_staff, update_time, update_staff
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.buildp.dao.model.TSupplierInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_supplier_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_supplier_info
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_supplier_info
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.buildp.dao.model.TSupplierInfoExample" >
+    delete from t_supplier_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.buildp.dao.model.TSupplierInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="supplierId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_supplier_info (supplier_name, region_code, business_permit, 
+      business_introduce, status, create_time, 
+      create_staff, update_time, update_staff
+      )
+    values (#{supplierName,jdbcType=VARCHAR}, #{regionCode,jdbcType=VARCHAR}, #{businessPermit,jdbcType=VARCHAR}, 
+      #{businessIntroduce,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.buildp.dao.model.TSupplierInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="supplierId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_supplier_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierName != null" >
+        supplier_name,
+      </if>
+      <if test="regionCode != null" >
+        region_code,
+      </if>
+      <if test="businessPermit != null" >
+        business_permit,
+      </if>
+      <if test="businessIntroduce != null" >
+        business_introduce,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createStaff != null" >
+        create_staff,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateStaff != null" >
+        update_staff,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCode != null" >
+        #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPermit != null" >
+        #{businessPermit,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIntroduce != null" >
+        #{businessIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.buildp.dao.model.TSupplierInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_supplier_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_supplier_info
+    <set >
+      <if test="record.supplierId != null" >
+        supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplierName != null" >
+        supplier_name = #{record.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionCode != null" >
+        region_code = #{record.regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessPermit != null" >
+        business_permit = #{record.businessPermit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessIntroduce != null" >
+        business_introduce = #{record.businessIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        create_staff = #{record.createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        update_staff = #{record.updateStaff,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_supplier_info
+    set supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      supplier_name = #{record.supplierName,jdbcType=VARCHAR},
+      region_code = #{record.regionCode,jdbcType=VARCHAR},
+      business_permit = #{record.businessPermit,jdbcType=VARCHAR},
+      business_introduce = #{record.businessIntroduce,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_staff = #{record.createStaff,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_staff = #{record.updateStaff,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.buildp.dao.model.TSupplierInfo" >
+    update t_supplier_info
+    <set >
+      <if test="supplierName != null" >
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionCode != null" >
+        region_code = #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPermit != null" >
+        business_permit = #{businessPermit,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIntroduce != null" >
+        business_introduce = #{businessIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        create_staff = #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        update_staff = #{updateStaff,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.buildp.dao.model.TSupplierInfo" >
+    update t_supplier_info
+    set supplier_name = #{supplierName,jdbcType=VARCHAR},
+      region_code = #{regionCode,jdbcType=VARCHAR},
+      business_permit = #{businessPermit,jdbcType=VARCHAR},
+      business_introduce = #{businessIntroduce,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_staff = #{createStaff,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_staff = #{updateStaff,jdbcType=VARCHAR}
+    where supplier_id = #{supplierId,jdbcType=BIGINT}
+  </update>
+  <insert id="insertBatch" parameterType="com.ai.buildp.dao.model.TSupplierInfo" >
+    <selectKey resultType="java.lang.Long" keyProperty="supplierId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_supplier_info (supplier_name, 
+      region_code, business_permit, business_introduce, 
+      status, create_time, create_staff, 
+      update_time, update_staff)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.supplierName,jdbcType=VARCHAR}, 
+      #{item.regionCode,jdbcType=VARCHAR}, #{item.businessPermit,jdbcType=VARCHAR}, #{item.businessIntroduce,jdbcType=VARCHAR}, 
+      #{item.status,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createStaff,jdbcType=VARCHAR}, 
+      #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateStaff,jdbcType=VARCHAR})</foreach>
+  </insert>
+</mapper>

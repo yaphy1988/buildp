@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.buildp.dao.mapper.TMaterialTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.buildp.dao.model.TMaterialType" >
+    <id column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="parent_type_id" property="parentTypeId" jdbcType="BIGINT" />
+    <result column="end_node" property="endNode" jdbcType="VARCHAR" />
+    <result column="sorts" property="sorts" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_staff" property="createStaff" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_staff" property="updateStaff" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    type_id, type_name, parent_type_id, end_node, sorts, status, create_time, create_staff, 
+    update_time, update_staff
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.buildp.dao.model.TMaterialTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_material_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_material_type
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_material_type
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.buildp.dao.model.TMaterialTypeExample" >
+    delete from t_material_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.buildp.dao.model.TMaterialType" >
+    <selectKey resultType="java.lang.Long" keyProperty="typeId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_material_type (type_name, parent_type_id, end_node, 
+      sorts, status, create_time, 
+      create_staff, update_time, update_staff
+      )
+    values (#{typeName,jdbcType=VARCHAR}, #{parentTypeId,jdbcType=BIGINT}, #{endNode,jdbcType=VARCHAR}, 
+      #{sorts,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.buildp.dao.model.TMaterialType" >
+    <selectKey resultType="java.lang.Long" keyProperty="typeId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_material_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="parentTypeId != null" >
+        parent_type_id,
+      </if>
+      <if test="endNode != null" >
+        end_node,
+      </if>
+      <if test="sorts != null" >
+        sorts,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createStaff != null" >
+        create_staff,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateStaff != null" >
+        update_staff,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentTypeId != null" >
+        #{parentTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="endNode != null" >
+        #{endNode,jdbcType=VARCHAR},
+      </if>
+      <if test="sorts != null" >
+        #{sorts,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.buildp.dao.model.TMaterialTypeExample" resultType="java.lang.Integer" >
+    select count(*) from t_material_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_material_type
+    <set >
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.typeName != null" >
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentTypeId != null" >
+        parent_type_id = #{record.parentTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.endNode != null" >
+        end_node = #{record.endNode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sorts != null" >
+        sorts = #{record.sorts,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        create_staff = #{record.createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        update_staff = #{record.updateStaff,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_material_type
+    set type_id = #{record.typeId,jdbcType=BIGINT},
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      parent_type_id = #{record.parentTypeId,jdbcType=BIGINT},
+      end_node = #{record.endNode,jdbcType=VARCHAR},
+      sorts = #{record.sorts,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_staff = #{record.createStaff,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_staff = #{record.updateStaff,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.buildp.dao.model.TMaterialType" >
+    update t_material_type
+    <set >
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentTypeId != null" >
+        parent_type_id = #{parentTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="endNode != null" >
+        end_node = #{endNode,jdbcType=VARCHAR},
+      </if>
+      <if test="sorts != null" >
+        sorts = #{sorts,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        create_staff = #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        update_staff = #{updateStaff,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.buildp.dao.model.TMaterialType" >
+    update t_material_type
+    set type_name = #{typeName,jdbcType=VARCHAR},
+      parent_type_id = #{parentTypeId,jdbcType=BIGINT},
+      end_node = #{endNode,jdbcType=VARCHAR},
+      sorts = #{sorts,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_staff = #{createStaff,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_staff = #{updateStaff,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </update>
+  <insert id="insertBatch" parameterType="com.ai.buildp.dao.model.TMaterialType" >
+    <selectKey resultType="java.lang.Long" keyProperty="typeId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_material_type (type_name, 
+      parent_type_id, end_node, sorts, 
+      status, create_time, create_staff, 
+      update_time, update_staff)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.typeName,jdbcType=VARCHAR}, 
+      #{item.parentTypeId,jdbcType=BIGINT}, #{item.endNode,jdbcType=VARCHAR}, #{item.sorts,jdbcType=BIGINT}, 
+      #{item.status,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createStaff,jdbcType=VARCHAR}, 
+      #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateStaff,jdbcType=VARCHAR})</foreach>
+  </insert>
+</mapper>

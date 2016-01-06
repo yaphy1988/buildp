@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.buildp.dao.mapper.TMeasureUnitsMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.buildp.dao.model.TMeasureUnits" >
+    <id column="measure_code" property="measureCode" jdbcType="VARCHAR" />
+    <result column="measure_name" property="measureName" jdbcType="VARCHAR" />
+    <result column="measure_type" property="measureType" jdbcType="VARCHAR" />
+    <result column="measure_type_name" property="measureTypeName" jdbcType="VARCHAR" />
+    <result column="measure_remark" property="measureRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    measure_code, measure_name, measure_type, measure_type_name, measure_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.buildp.dao.model.TMeasureUnitsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_measure_units
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_measure_units
+    where measure_code = #{measureCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_measure_units
+    where measure_code = #{measureCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.buildp.dao.model.TMeasureUnitsExample" >
+    delete from t_measure_units
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.buildp.dao.model.TMeasureUnits" >
+    <selectKey resultType="java.lang.String" keyProperty="measureCode" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_measure_units (measure_name, measure_type, measure_type_name, 
+      measure_remark)
+    values (#{measureName,jdbcType=VARCHAR}, #{measureType,jdbcType=VARCHAR}, #{measureTypeName,jdbcType=VARCHAR}, 
+      #{measureRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.buildp.dao.model.TMeasureUnits" >
+    <selectKey resultType="java.lang.String" keyProperty="measureCode" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_measure_units
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="measureName != null" >
+        measure_name,
+      </if>
+      <if test="measureType != null" >
+        measure_type,
+      </if>
+      <if test="measureTypeName != null" >
+        measure_type_name,
+      </if>
+      <if test="measureRemark != null" >
+        measure_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="measureName != null" >
+        #{measureName,jdbcType=VARCHAR},
+      </if>
+      <if test="measureType != null" >
+        #{measureType,jdbcType=VARCHAR},
+      </if>
+      <if test="measureTypeName != null" >
+        #{measureTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="measureRemark != null" >
+        #{measureRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.buildp.dao.model.TMeasureUnitsExample" resultType="java.lang.Integer" >
+    select count(*) from t_measure_units
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_measure_units
+    <set >
+      <if test="record.measureCode != null" >
+        measure_code = #{record.measureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measureName != null" >
+        measure_name = #{record.measureName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measureType != null" >
+        measure_type = #{record.measureType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measureTypeName != null" >
+        measure_type_name = #{record.measureTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measureRemark != null" >
+        measure_remark = #{record.measureRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_measure_units
+    set measure_code = #{record.measureCode,jdbcType=VARCHAR},
+      measure_name = #{record.measureName,jdbcType=VARCHAR},
+      measure_type = #{record.measureType,jdbcType=VARCHAR},
+      measure_type_name = #{record.measureTypeName,jdbcType=VARCHAR},
+      measure_remark = #{record.measureRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.buildp.dao.model.TMeasureUnits" >
+    update t_measure_units
+    <set >
+      <if test="measureName != null" >
+        measure_name = #{measureName,jdbcType=VARCHAR},
+      </if>
+      <if test="measureType != null" >
+        measure_type = #{measureType,jdbcType=VARCHAR},
+      </if>
+      <if test="measureTypeName != null" >
+        measure_type_name = #{measureTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="measureRemark != null" >
+        measure_remark = #{measureRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where measure_code = #{measureCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.buildp.dao.model.TMeasureUnits" >
+    update t_measure_units
+    set measure_name = #{measureName,jdbcType=VARCHAR},
+      measure_type = #{measureType,jdbcType=VARCHAR},
+      measure_type_name = #{measureTypeName,jdbcType=VARCHAR},
+      measure_remark = #{measureRemark,jdbcType=VARCHAR}
+    where measure_code = #{measureCode,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertBatch" parameterType="com.ai.buildp.dao.model.TMeasureUnits" >
+    <selectKey resultType="java.lang.String" keyProperty="measureCode" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_measure_units (measure_name, 
+      measure_type, measure_type_name, 
+      measure_remark)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.measureName,jdbcType=VARCHAR}, 
+      #{item.measureType,jdbcType=VARCHAR}, #{item.measureTypeName,jdbcType=VARCHAR}, 
+      #{item.measureRemark,jdbcType=VARCHAR})</foreach>
+  </insert>
+</mapper>

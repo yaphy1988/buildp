@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!--
+    具体配置参考：http://mybatis.github.io/generator/configreference/xmlconfig.html
+  -->
+  <properties url="file:init-config.properties"/> 
+  <!--
+	连接数据库的jar包 oracle的jar包
+  -->
+  <classPathEntry location="lib/ojdbc14-10.2.0.3.jar" />
+  
+  <context id="oracleTables" targetRuntime="MyBatis3">
+ 	<property name="DBType" value="oracle"></property>
+	<!--
+	  mergeable 属性表示，如果之前存在 xml文件，那么新的文件，是否合并到之前的文件中；默认为不合并；
+	-->
+	<!--
+	<property name="mergeable" value="true"></property>
+	-->
+	<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+	<!--
+	  oracle的分页插件
+	-->
+    <plugin type="org.asia.mybatis.generator.plugins.OraclePaginationPlugin" />
+    <!--
+	  批量写入插件，会生成 insertBatch方法
+	-->
+    <plugin type="org.asia.mybatis.generator.plugins.BatchInsertPlugin"></plugin>
+    
+    <!--
+      注释；取消注释；
+     -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+
+    <!--
+	  数据库连接；C2新库，开发库
+	-->
+    <jdbcConnection driverClass="${db.driverclass}"
+        connectionURL="${db.url}"
+        userId="${db.userid}"
+        password="${db.pass}">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	
+	<!--
+	  java model的信息，targetPackage 包名；targetProject 目录名称
+	-->
+    <javaModelGenerator targetPackage="${javamodel.package}" targetProject="${javamodel.targetdir}">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	
+	<!--
+	  sql-mapping 配置文件的信息，targetPackage 包名；targetProject 目录名称
+	-->
+    <sqlMapGenerator targetPackage="${sqlmap.package}"  targetProject="${sqlmap.targetdir}">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+	
+	<!--
+	  mybatis 的dao 文件信息，targetPackage 包名；targetProject 目录名称
+	-->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="${javaclient.package}"  targetProject="${javaclient.targetdir}">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+	
+	<!--
+	  需要生成代码的表信息
+	-->
+     		<table schema="buildpdev" tableName="T_AUTH_MENU">
+
+			<!-- ignoreQualifiersAtRuntime 需要设置为 true，表示生成的xml配置文件中忽略 表前面的视图名称； -->
+			<property name="ignoreQualifiersAtRuntime" value="true" />
+
+			<!-- 主键的生成方式 -->
+			<generatedKey column="STOCK_ID"
+				sqlStatement="SELECT SEQ_AUTH_MENU.nextval from dual" identity="true" />
+
+		</table>
+		
+		
+  </context>
+</generatorConfiguration>
